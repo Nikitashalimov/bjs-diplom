@@ -1,25 +1,25 @@
 'use strict';
 
-let form = new UserForm;
+let form = new UserForm();
 
 form.loginFormCallback = (data) => {
 	ApiConnector.login(data, (response) => {
-		if (response.ok === true) {
+		if (response.success) {
 			location.reload();
 		}
 		else {
-			form.setLoginErrorMessage('Возникла ошибка при входе');
+			form.setLoginErrorMessage(`Ошибка: ${response.error}`);
 		}
 	});
 }
 
 form.registerFormCallback = (data) => {
 	ApiConnector.register(data, (response) => {
-		if (response.ok === true) {
+		if (response.success) {
 			location.reload();
 		}
 		else {
-			form.setRegisterErrorMessage('Возникла ошибка при регистрации нового пользователя');
+			form.setRegisterErrorMessage(`Ошибка: ${response.error}`);
 		}
 	});
 }
